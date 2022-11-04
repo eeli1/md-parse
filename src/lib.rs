@@ -13,25 +13,27 @@ pub enum Text {
 }
 
 #[derive(Debug, PartialEq, Clone)]
-pub enum Markdown {
-    Hedder1(Vec<Text>),
-    Hedder2(Vec<Text>),
-    Hedder3(Vec<Text>),
-    Hedder4(Vec<Text>),
-    Hedder5(Vec<Text>),
-    Hedder6(Vec<Text>),
-    OrderedList(Vec<Text>, usize),
+pub enum List {
     UnorderedList(Vec<Text>),
-    Blockquote(Vec<Text>),
-    Paragraph(Vec<Text>),
+    OrderedList(Vec<Text>,usize),
+    None(Vec<Text>),
 }
 
 #[derive(Debug, PartialEq, Clone)]
+pub enum Markdown {
+    Hedder(List, u8),
+    Blockquote(List,u8),
+    Paragraph(List),
+    Code(Option<String>, Vec<String>),
+}
 
+#[derive(Debug, PartialEq, Clone)]
 pub enum Error {
     None,
 }
 
+
+/* 
 pub fn parse(md: &str) -> Result<Vec<Markdown>, Error> {
     let mut md_vec = Vec::new();
     for mut line in md.split("\n") {
@@ -72,6 +74,7 @@ pub fn parse(md: &str) -> Result<Vec<Markdown>, Error> {
     }
     Ok(md_vec)
 }
+*/
 
 fn parse_text(line: &str) -> Result<Vec<Text>, Error> {
     let mut text = Vec::new();

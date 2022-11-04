@@ -1,6 +1,6 @@
 // example page from stackedit.io
 
-#[test]
+#[test]    
 fn stackedit(){
     let md = r#"""
 # Welcome to StackEdit!
