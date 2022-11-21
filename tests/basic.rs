@@ -1,4 +1,4 @@
-use md_parse::{parse, Markdown, Text};
+use md_parse::{parse, Markdown, Text,List};
 
 #[test]
 fn heading() {
@@ -6,13 +6,13 @@ fn heading() {
     assert_eq!(
         parse(md),
         Ok(vec![
-            Markdown::Hedder1(vec![Text::NoFormat("H1".to_string()),]),
-            Markdown::Hedder2(vec![Text::NoFormat("H2".to_string()),]),
-            Markdown::Hedder3(vec![Text::NoFormat("H3".to_string()),]),
-            Markdown::Hedder4(vec![Text::NoFormat("H4".to_string()),]),
-            Markdown::Hedder5(vec![Text::NoFormat("H5".to_string()),]),
-            Markdown::Hedder6(vec![Text::NoFormat("H6".to_string()),]),
-            Markdown::Paragraph(vec![Text::NoFormat("this is ## not a hedder ".to_string())])
+            Markdown::Hedder(List::None(vec![Text::NoFormat("H1".to_string()),]),1),
+            Markdown::Hedder(List::None(vec![Text::NoFormat("H2".to_string()),]),2),
+            Markdown::Hedder(List::None(vec![Text::NoFormat("H3".to_string()),]),3),
+            Markdown::Hedder(List::None(vec![Text::NoFormat("H4".to_string()),]),4),
+            Markdown::Hedder(List::None(vec![Text::NoFormat("H5".to_string()),]),5),
+            Markdown::Hedder(List::None(vec![Text::NoFormat("H6".to_string()),]),6),
+            Markdown::Paragraph(List::None(vec![Text::NoFormat("this is ## not a hedder ".to_string())]))
         ])
     );
 }
